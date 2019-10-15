@@ -203,13 +203,16 @@ class Route implements RouteInterface
 						$controllerName = $parts[1];
 						$actionName = $parts[2];
 						break;
+
 					case 2:
 						$controllerName = $parts[0];
 						$actionName = $parts[1];
 						break;
+
 					case 1:
 						$controllerName = $parts[0];
 						break;
+
 
 				}
 

@@ -90,29 +90,44 @@ class Filter implements FilterInterface
 
 		switch ($filter) {
 			case Filter::FILTER_EMAIL:
-				return filter_var($value, constant("FILTER_SANITIZE_EMAIL"));			case Filter::FILTER_INT:
-				return filter_var($value, FILTER_SANITIZE_NUMBER_INT);			case Filter::FILTER_INT_CAST:
-				return intval($value);			case Filter::FILTER_ABSINT:
-				return abs(intval($value));			case Filter::FILTER_STRING:
-				return filter_var($value, FILTER_SANITIZE_STRING);			case Filter::FILTER_FLOAT:
-				return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, ["flags" => FILTER_FLAG_ALLOW_FRACTION]);			case Filter::FILTER_FLOAT_CAST:
-				return doubleval($value);			case Filter::FILTER_ALPHANUM:
-				return preg_replace("/[^A-Za-z0-9]/", "", $value);			case Filter::FILTER_TRIM:
-				return trim($value);			case Filter::FILTER_STRIPTAGS:
-				return strip_tags($value);			case Filter::FILTER_LOWER:
+				return filter_var($value, constant("FILTER_SANITIZE_EMAIL"));
+			case Filter::FILTER_INT:
+				return filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+			case Filter::FILTER_INT_CAST:
+				return intval($value);
+			case Filter::FILTER_ABSINT:
+				return abs(intval($value));
+			case Filter::FILTER_STRING:
+				return filter_var($value, FILTER_SANITIZE_STRING);
+			case Filter::FILTER_FLOAT:
+				return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, ["flags" => FILTER_FLAG_ALLOW_FRACTION]);
+			case Filter::FILTER_FLOAT_CAST:
+				return doubleval($value);
+			case Filter::FILTER_ALPHANUM:
+				return preg_replace("/[^A-Za-z0-9]/", "", $value);
+			case Filter::FILTER_TRIM:
+				return trim($value);
+			case Filter::FILTER_STRIPTAGS:
+				return strip_tags($value);
+			case Filter::FILTER_LOWER:
 				if (function_exists("mb_strtolower"))
 				{
 					return mb_strtolower($value);
 				}
-				return strtolower($value);			case Filter::FILTER_UPPER:
+				return strtolower($value);
+			case Filter::FILTER_UPPER:
 				if (function_exists("mb_strtoupper"))
 				{
 					return mb_strtoupper($value);
 				}
-				return strtoupper($value);			case Filter::FILTER_URL:
-				return filter_var($value, FILTER_SANITIZE_URL);			case Filter::FILTER_SPECIAL_CHARS:
-				return filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);			default:
+				return strtoupper($value);
+			case Filter::FILTER_URL:
+				return filter_var($value, FILTER_SANITIZE_URL);
+			case Filter::FILTER_SPECIAL_CHARS:
+				return filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+			default:
 				throw new Exception("Sanitize filter '" . $filter . "' is not supported");
+
 		}
 
 	}

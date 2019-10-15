@@ -888,14 +888,18 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
 		{
 			switch ($relation->getType()) {
 				case Relation::BELONGS_TO:
+
 				case Relation::HAS_ONE:
 					$retrieveMethod = "findFirst";
 					break;
+
 				case Relation::HAS_MANY:
 					$retrieveMethod = "find";
 					break;
+
 				default:
 					throw new Exception("Unknown relation type");
+
 			}
 
 		}

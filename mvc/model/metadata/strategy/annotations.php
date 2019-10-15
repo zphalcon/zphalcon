@@ -70,73 +70,90 @@ class Annotations implements StrategyInterface
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_INT;
 					$numericTyped[$columnName] = true;
 					break;
+
 				case "integer":
 					$fieldTypes[$columnName] = Column::TYPE_INTEGER;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_INT;
 					$numericTyped[$columnName] = true;
 					break;
+
 				case "decimal":
 					$fieldTypes[$columnName] = Column::TYPE_DECIMAL;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_DECIMAL;
 					$numericTyped[$columnName] = true;
 					break;
+
 				case "float":
 					$fieldTypes[$columnName] = Column::TYPE_FLOAT;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_DECIMAL;
 					$numericTyped[$columnName] = true;
 					break;
+
 				case "double":
 					$fieldTypes[$columnName] = Column::TYPE_DOUBLE;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_DECIMAL;
 					$numericTyped[$columnName] = true;
 					break;
+
 				case "boolean":
 					$fieldTypes[$columnName] = Column::TYPE_BOOLEAN;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_BOOL;
 					break;
+
 				case "date":
 					$fieldTypes[$columnName] = Column::TYPE_DATE;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "datetime":
 					$fieldTypes[$columnName] = Column::TYPE_DATETIME;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "timestamp":
 					$fieldTypes[$columnName] = Column::TYPE_TIMESTAMP;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "text":
 					$fieldTypes[$columnName] = Column::TYPE_TEXT;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "char":
 					$fieldTypes[$columnName] = Column::TYPE_CHAR;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "json":
 					$fieldTypes[$columnName] = Column::TYPE_JSON;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
 					break;
+
 				case "tinyblob":
 					$fieldTypes[$columnName] = Column::TYPE_TINYBLOB;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_BLOB;
 					break;
+
 				case "blob":
 					$fieldTypes[$columnName] = Column::TYPE_BLOB;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_BLOB;
 					break;
+
 				case "mediumblob":
 					$fieldTypes[$columnName] = Column::TYPE_MEDIUMBLOB;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_BLOB;
 					break;
+
 				case "longblob":
 					$fieldTypes[$columnName] = Column::TYPE_LONGBLOB;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_BLOB;
 					break;
+
 				default:
 					$fieldTypes[$columnName] = Column::TYPE_VARCHAR;
 					$fieldBindTypes[$columnName] = Column::BIND_PARAM_STR;
+
 
 			}
 			if ($propAnnotations->has("Primary"))

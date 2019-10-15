@@ -43,21 +43,27 @@ class Text
 			case Text::RANDOM_ALPHA:
 				$pool = array_merge(range("a", "z"), range("A", "Z"));
 				break;
+
 			case Text::RANDOM_HEXDEC:
 				$pool = array_merge(range(0, 9), range("a", "f"));
 				break;
+
 			case Text::RANDOM_NUMERIC:
 				$pool = range(0, 9);
 				break;
+
 			case Text::RANDOM_NOZERO:
 				$pool = range(1, 9);
 				break;
+
 			case Text::RANDOM_DISTINCT:
 				$pool = str_split("2345679ACDEFHJKLMNPRSTUVWXYZ");
 				break;
+
 			default:
 				$pool = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
 				break;
+
 
 		}
 

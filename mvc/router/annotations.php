@@ -138,30 +138,37 @@ class Annotations extends Router
 			case "Route":
 				$isRoute = true;
 				break;
+
 			case "Get":
 				$isRoute = true;
 				$methods = "GET";
 				break;
+
 			case "Post":
 				$isRoute = true;
 				$methods = "POST";
 				break;
+
 			case "Put":
 				$isRoute = true;
 				$methods = "PUT";
 				break;
+
 			case "Patch":
 				$isRoute = true;
 				$methods = "PATCH";
 				break;
+
 			case "Delete":
 				$isRoute = true;
 				$methods = "DELETE";
 				break;
+
 			case "Options":
 				$isRoute = true;
 				$methods = "OPTIONS";
 				break;
+
 
 		}
 

@@ -182,8 +182,10 @@ class Adapter implements AdapterInterface
 
 		switch ($status) {
 			case PHP_SESSION_DISABLED:
-				return self::SESSION_DISABLED;			case PHP_SESSION_ACTIVE:
+				return self::SESSION_DISABLED;
+			case PHP_SESSION_ACTIVE:
 				return self::SESSION_ACTIVE;
+
 		}
 
 		return self::SESSION_NONE;

@@ -252,69 +252,93 @@ class Query implements QueryInterface, InjectionAwareInterface
 				case PHQL_T_LESS:
 					$exprReturn = ["type" => "binary-op", "op" => "<", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_EQUALS:
 					$exprReturn = ["type" => "binary-op", "op" => "=", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_GREATER:
 					$exprReturn = ["type" => "binary-op", "op" => ">", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_NOTEQUALS:
 					$exprReturn = ["type" => "binary-op", "op" => "<>", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_LESSEQUAL:
 					$exprReturn = ["type" => "binary-op", "op" => "<=", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_GREATEREQUAL:
 					$exprReturn = ["type" => "binary-op", "op" => ">=", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_AND:
 					$exprReturn = ["type" => "binary-op", "op" => "AND", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_OR:
 					$exprReturn = ["type" => "binary-op", "op" => "OR", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_QUALIFIED:
 					$exprReturn = $this->_getQualified($expr);
 					break;
+
 				case PHQL_T_ADD:
 					$exprReturn = ["type" => "binary-op", "op" => "+", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_SUB:
 					$exprReturn = ["type" => "binary-op", "op" => "-", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_MUL:
 					$exprReturn = ["type" => "binary-op", "op" => "*", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_DIV:
 					$exprReturn = ["type" => "binary-op", "op" => "/", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_MOD:
 					$exprReturn = ["type" => "binary-op", "op" => "%", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_BITWISE_AND:
 					$exprReturn = ["type" => "binary-op", "op" => "&", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_BITWISE_OR:
 					$exprReturn = ["type" => "binary-op", "op" => "|", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_ENCLOSED:
+
 				case PHQL_T_SUBQUERY:
 					$exprReturn = ["type" => "parentheses", "left" => $left];
 					break;
+
 				case PHQL_T_MINUS:
 					$exprReturn = ["type" => "unary-op", "op" => "-", "right" => $right];
 					break;
+
 				case PHQL_T_INTEGER:
+
 				case PHQL_T_DOUBLE:
+
 				case PHQL_T_HINTEGER:
 					$exprReturn = ["type" => "literal", "value" => $expr["value"]];
 					break;
+
 				case PHQL_T_TRUE:
 					$exprReturn = ["type" => "literal", "value" => "TRUE"];
 					break;
+
 				case PHQL_T_FALSE:
 					$exprReturn = ["type" => "literal", "value" => "FALSE"];
 					break;
+
 				case PHQL_T_STRING:
 					$value = $expr["value"];
 					if ($quoting === true)
@@ -330,12 +354,15 @@ class Query implements QueryInterface, InjectionAwareInterface
 					}
 					$exprReturn = ["type" => "literal", "value" => $exprValue];
 					break;
+
 				case PHQL_T_NPLACEHOLDER:
 					$exprReturn = ["type" => "placeholder", "value" => str_replace("?", ":", $expr["value"])];
 					break;
+
 				case PHQL_T_SPLACEHOLDER:
 					$exprReturn = ["type" => "placeholder", "value" => ":" . $expr["value"]];
 					break;
+
 				case PHQL_T_BPLACEHOLDER:
 					$value = $expr["value"];
 					if (memstr($value, ":"))
@@ -349,28 +376,36 @@ class Query implements QueryInterface, InjectionAwareInterface
 								$this[$name] = Column::BIND_PARAM_STR;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "int":
 								$this[$name] = Column::BIND_PARAM_INT;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "double":
 								$this[$name] = Column::BIND_PARAM_DECIMAL;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "bool":
 								$this[$name] = Column::BIND_PARAM_BOOL;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "blob":
 								$this[$name] = Column::BIND_PARAM_BLOB;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "null":
 								$this[$name] = Column::BIND_PARAM_NULL;
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name];
 								break;
+
 							case "array":
+
 							case "array-str":
+
 							case "array-int":
 								if (!(function() { if(isset($this->_bindParams[$name])) {$bind = $this->_bindParams[$name]; return $bind; } else { return false; } }()))
 								{
@@ -386,74 +421,98 @@ class Query implements QueryInterface, InjectionAwareInterface
 								}
 								$exprReturn = ["type" => "placeholder", "value" => ":" . $name, "rawValue" => $name, "times" => count($bind)];
 								break;
+
 							default:
 								throw new Exception("Unknown bind type: " . $bindType);
+
 						}
 
 					}
 					break;
+
 				case PHQL_T_NULL:
 					$exprReturn = ["type" => "literal", "value" => "NULL"];
 					break;
+
 				case PHQL_T_LIKE:
 					$exprReturn = ["type" => "binary-op", "op" => "LIKE", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_NLIKE:
 					$exprReturn = ["type" => "binary-op", "op" => "NOT LIKE", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_ILIKE:
 					$exprReturn = ["type" => "binary-op", "op" => "ILIKE", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_NILIKE:
 					$exprReturn = ["type" => "binary-op", "op" => "NOT ILIKE", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_NOT:
 					$exprReturn = ["type" => "unary-op", "op" => "NOT ", "right" => $right];
 					break;
+
 				case PHQL_T_ISNULL:
 					$exprReturn = ["type" => "unary-op", "op" => " IS NULL", "left" => $left];
 					break;
+
 				case PHQL_T_ISNOTNULL:
 					$exprReturn = ["type" => "unary-op", "op" => " IS NOT NULL", "left" => $left];
 					break;
+
 				case PHQL_T_IN:
 					$exprReturn = ["type" => "binary-op", "op" => "IN", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_NOTIN:
 					$exprReturn = ["type" => "binary-op", "op" => "NOT IN", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_EXISTS:
 					$exprReturn = ["type" => "unary-op", "op" => "EXISTS", "right" => $right];
 					break;
+
 				case PHQL_T_DISTINCT:
 					$exprReturn = ["type" => "unary-op", "op" => "DISTINCT ", "right" => $right];
 					break;
+
 				case PHQL_T_BETWEEN:
 					$exprReturn = ["type" => "binary-op", "op" => "BETWEEN", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_AGAINST:
 					$exprReturn = ["type" => "binary-op", "op" => "AGAINST", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_CAST:
 					$exprReturn = ["type" => "cast", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_CONVERT:
 					$exprReturn = ["type" => "convert", "left" => $left, "right" => $right];
 					break;
+
 				case PHQL_T_RAW_QUALIFIED:
 					$exprReturn = ["type" => "literal", "value" => $expr["name"]];
 					break;
+
 				case PHQL_T_FCALL:
 					$exprReturn = $this->_getFunctionCall($expr);
 					break;
+
 				case PHQL_T_CASE:
 					$exprReturn = $this->_getCaseExpression($expr);
 					break;
+
 				case PHQL_T_SELECT:
 					$exprReturn = ["type" => "select", "value" => $this->_prepareSelect($expr, true)];
 					break;
+
 				default:
 					throw new Exception("Unknown expression type " . $exprType);
+
 			}
 
 			return $exprReturn;
@@ -639,11 +698,16 @@ class Query implements QueryInterface, InjectionAwareInterface
 
 		switch ($type) {
 			case PHQL_T_INNERJOIN:
-				return "INNER";			case PHQL_T_LEFTJOIN:
-				return "LEFT";			case PHQL_T_RIGHTJOIN:
-				return "RIGHT";			case PHQL_T_CROSSJOIN:
-				return "CROSS";			case PHQL_T_FULLJOIN:
+				return "INNER";
+			case PHQL_T_LEFTJOIN:
+				return "LEFT";
+			case PHQL_T_RIGHTJOIN:
+				return "RIGHT";
+			case PHQL_T_CROSSJOIN:
+				return "CROSS";
+			case PHQL_T_FULLJOIN:
 				return "FULL OUTER";
+
 		}
 
 		throw new Exception("Unknown join type " . $type . ", when preparing: " . $this->_phql);
@@ -1506,17 +1570,22 @@ class Query implements QueryInterface, InjectionAwareInterface
 					case PHQL_T_SELECT:
 						$irPhql = $this->_prepareSelect();
 						break;
+
 					case PHQL_T_INSERT:
 						$irPhql = $this->_prepareInsert();
 						break;
+
 					case PHQL_T_UPDATE:
 						$irPhql = $this->_prepareUpdate();
 						break;
+
 					case PHQL_T_DELETE:
 						$irPhql = $this->_prepareDelete();
 						break;
+
 					default:
 						throw new Exception("Unknown statement " . $type . ", when preparing: " . $phql);
+
 				}
 
 			}
@@ -1828,15 +1897,21 @@ class Query implements QueryInterface, InjectionAwareInterface
 			$exprValue = $value["value"];
 			switch ($value["type"]) {
 				case PHQL_T_STRING:
+
 				case PHQL_T_INTEGER:
+
 				case PHQL_T_DOUBLE:
 					$insertValue = $dialect->getSqlExpression($exprValue);
 					break;
+
 				case PHQL_T_NULL:
 					$insertValue = null;
 					break;
+
 				case PHQL_T_NPLACEHOLDER:
+
 				case PHQL_T_SPLACEHOLDER:
+
 				case PHQL_T_BPLACEHOLDER:
 					if (typeof($bindParams) <> "array")
 					{
@@ -1848,9 +1923,11 @@ class Query implements QueryInterface, InjectionAwareInterface
 						throw new Exception("Bound parameter '" . $wildcard . "' cannot be replaced because it isn't in the placeholders list");
 					}
 					break;
+
 				default:
 					$insertValue = new RawValue($dialect->getSqlExpression($exprValue));
 					break;
+
 
 			}
 			$fieldName = $fields[$number];
@@ -1914,15 +1991,21 @@ class Query implements QueryInterface, InjectionAwareInterface
 			}
 			switch ($value["type"]) {
 				case PHQL_T_STRING:
+
 				case PHQL_T_INTEGER:
+
 				case PHQL_T_DOUBLE:
 					$updateValue = $dialect->getSqlExpression($exprValue);
 					break;
+
 				case PHQL_T_NULL:
 					$updateValue = null;
 					break;
+
 				case PHQL_T_NPLACEHOLDER:
+
 				case PHQL_T_SPLACEHOLDER:
+
 				case PHQL_T_BPLACEHOLDER:
 					if (typeof($bindParams) <> "array")
 					{
@@ -1937,10 +2020,13 @@ class Query implements QueryInterface, InjectionAwareInterface
 
 					}
 					break;
+
 				case PHQL_T_BPLACEHOLDER:
-					throw new Exception("Not supported");				default:
+					throw new Exception("Not supported");
+				default:
 					$updateValue = new RawValue($dialect->getSqlExpression($exprValue));
 					break;
+
 
 			}
 			$updateValues[$fieldName] = $updateValue;
@@ -2156,17 +2242,22 @@ class Query implements QueryInterface, InjectionAwareInterface
 			case PHQL_T_SELECT:
 				$result = $this->_executeSelect($intermediate, $mergedParams, $mergedTypes);
 				break;
+
 			case PHQL_T_INSERT:
 				$result = $this->_executeInsert($intermediate, $mergedParams, $mergedTypes);
 				break;
+
 			case PHQL_T_UPDATE:
 				$result = $this->_executeUpdate($intermediate, $mergedParams, $mergedTypes);
 				break;
+
 			case PHQL_T_DELETE:
 				$result = $this->_executeDelete($intermediate, $mergedParams, $mergedTypes);
 				break;
+
 			default:
 				throw new Exception("Unknown statement " . $type);
+
 		}
 
 		if ($cacheOptions !== null)

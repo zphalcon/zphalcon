@@ -48,20 +48,27 @@ class Annotation
 
 		switch ($type) {
 			case PHANNOT_T_INTEGER:
+
 			case PHANNOT_T_DOUBLE:
+
 			case PHANNOT_T_STRING:
+
 			case PHANNOT_T_IDENTIFIER:
 				$value = $expr["value"];
 				break;
+
 			case PHANNOT_T_NULL:
 				$value = null;
 				break;
+
 			case PHANNOT_T_FALSE:
 				$value = false;
 				break;
+
 			case PHANNOT_T_TRUE:
 				$value = true;
 				break;
+
 			case PHANNOT_T_ARRAY:
 				$arrayValue = [];
 				foreach ($expr["items"] as $item) {
@@ -72,9 +79,12 @@ class Annotation
 
 					}
 				}
-				return $arrayValue;			case PHANNOT_T_ANNOTATION:
-				return new Annotation($expr);			default:
+				return $arrayValue;
+			case PHANNOT_T_ANNOTATION:
+				return new Annotation($expr);
+			default:
 				throw new Exception("The expression " . $type . " is unknown");
+
 		}
 
 		return $value;

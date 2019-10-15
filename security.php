@@ -103,30 +103,39 @@ class Security implements InjectionAwareInterface
 			case self::CRYPT_BLOWFISH_A:
 				$variant = "a";
 				break;
+
 			case self::CRYPT_BLOWFISH_X:
 				$variant = "x";
 				break;
+
 			case self::CRYPT_BLOWFISH_Y:
 				$variant = "y";
 				break;
+
 			case self::CRYPT_MD5:
 				$variant = "1";
 				break;
+
 			case self::CRYPT_SHA256:
 				$variant = "5";
 				break;
+
 			case self::CRYPT_SHA512:
 				$variant = "6";
 				break;
+
 			case self::CRYPT_DEFAULT:
+
 			default:
 				$variant = "y";
 				break;
+
 
 		}
 
 		switch ($hash) {
 			case self::CRYPT_STD_DES:
+
 			case self::CRYPT_EXT_DES:
 				if ($hash == self::CRYPT_EXT_DES)
 				{
@@ -137,18 +146,26 @@ class Security implements InjectionAwareInterface
 				{
 					throw new Exception("Unable to get random bytes for the salt");
 				}
-				return crypt($password, $saltBytes);			case self::CRYPT_MD5:
+				return crypt($password, $saltBytes);
+			case self::CRYPT_MD5:
+
 			case self::CRYPT_SHA256:
+
 			case self::CRYPT_SHA512:
 				$saltBytes = $this->getSaltBytes($hash == self::CRYPT_MD5 ? 12 : 16);
 				if (typeof($saltBytes) <> "string")
 				{
 					throw new Exception("Unable to get random bytes for the salt");
 				}
-				return crypt($password, "$" . $variant . "$" . $saltBytes . "$");			case self::CRYPT_DEFAULT:
+				return crypt($password, "$" . $variant . "$" . $saltBytes . "$");
+			case self::CRYPT_DEFAULT:
+
 			case self::CRYPT_BLOWFISH:
+
 			case self::CRYPT_BLOWFISH_X:
+
 			case self::CRYPT_BLOWFISH_Y:
+
 			default:
 				$saltBytes = $this->getSaltBytes(22);
 				if (typeof($saltBytes) <> "string")
@@ -161,6 +178,7 @@ class Security implements InjectionAwareInterface
 
 				}
 				return crypt($password, "$2" . $variant . "$" . sprintf("%02s", $workFactor) . "$" . $saltBytes . "$");
+
 		}
 
 		return "";

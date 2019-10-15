@@ -42,6 +42,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_DATE:
 				if (empty($columnSql))
 				{
@@ -49,6 +50,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_VARCHAR:
 				if (empty($columnSql))
 				{
@@ -57,6 +59,7 @@ class Postgresql extends Dialect
 				}
 				$columnSql .= "(" . $size . ")";
 				break;
+
 			case Column::TYPE_DECIMAL:
 				if (empty($columnSql))
 				{
@@ -65,6 +68,7 @@ class Postgresql extends Dialect
 				}
 				$columnSql .= "(" . $size . "," . $column->getScale() . ")";
 				break;
+
 			case Column::TYPE_DATETIME:
 				if (empty($columnSql))
 				{
@@ -72,6 +76,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_TIMESTAMP:
 				if (empty($columnSql))
 				{
@@ -79,6 +84,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_CHAR:
 				if (empty($columnSql))
 				{
@@ -87,6 +93,7 @@ class Postgresql extends Dialect
 				}
 				$columnSql .= "(" . $size . ")";
 				break;
+
 			case Column::TYPE_TEXT:
 				if (empty($columnSql))
 				{
@@ -94,6 +101,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_FLOAT:
 				if (empty($columnSql))
 				{
@@ -101,6 +109,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_BIGINTEGER:
 				if (empty($columnSql))
 				{
@@ -112,6 +121,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_JSON:
 				if (empty($columnSql))
 				{
@@ -119,6 +129,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_JSONB:
 				if (empty($columnSql))
 				{
@@ -126,6 +137,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_BOOLEAN:
 				if (empty($columnSql))
 				{
@@ -133,6 +145,7 @@ class Postgresql extends Dialect
 
 				}
 				break;
+
 			default:
 				if (empty($columnSql))
 				{
@@ -155,6 +168,7 @@ class Postgresql extends Dialect
 					}
 
 				}
+
 
 		}
 

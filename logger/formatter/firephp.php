@@ -13,16 +13,26 @@ class Firephp extends Formatter
 	{
 		switch ($type) {
 			case Logger::EMERGENCY:
+
 			case Logger::CRITICAL:
+
 			case Logger::ERROR:
-				return "ERROR";			case Logger::ALERT:
+				return "ERROR";
+			case Logger::ALERT:
+
 			case Logger::WARNING:
-				return "WARN";			case Logger::INFO:
+				return "WARN";
+			case Logger::INFO:
+
 			case Logger::NOTICE:
+
 			case Logger::CUSTOM:
-				return "INFO";			case Logger::DEBUG:
+				return "INFO";
+			case Logger::DEBUG:
+
 			case Logger::SPECIAL:
 				return "LOG";
+
 		}
 
 		return "CUSTOM";

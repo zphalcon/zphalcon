@@ -94,14 +94,20 @@ class Column implements ColumnInterface
 		{
 			switch ($type) {
 				case self::TYPE_INTEGER:
+
 				case self::TYPE_FLOAT:
+
 				case self::TYPE_DECIMAL:
+
 				case self::TYPE_DOUBLE:
+
 				case self::TYPE_BIGINTEGER:
 					$this->_scale = $scale;
 					break;
+
 				default:
 					throw new Exception("Column type does not support scale parameter");
+
 			}
 
 		}
@@ -248,12 +254,17 @@ class Column implements ColumnInterface
 		{
 			switch ($definition["type"]) {
 				case self::TYPE_INTEGER:
+
 				case self::TYPE_FLOAT:
+
 				case self::TYPE_DECIMAL:
+
 				case self::TYPE_DOUBLE:
+
 				case self::TYPE_BIGINTEGER:
 					$definition["scale"] = $scale;
 					break;
+
 
 			}
 

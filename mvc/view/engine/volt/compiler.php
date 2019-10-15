@@ -739,36 +739,47 @@ class Compiler implements InjectionAwareInterface
 				case PHVOLT_T_NOT:
 					$exprCode = "!" . $rightCode;
 					break;
+
 				case PHVOLT_T_MUL:
 					$exprCode = $leftCode . " * " . $rightCode;
 					break;
+
 				case PHVOLT_T_ADD:
 					$exprCode = $leftCode . " + " . $rightCode;
 					break;
+
 				case PHVOLT_T_SUB:
 					$exprCode = $leftCode . " - " . $rightCode;
 					break;
+
 				case PHVOLT_T_DIV:
 					$exprCode = $leftCode . " / " . $rightCode;
 					break;
+
 				case 37:
 					$exprCode = $leftCode . " % " . $rightCode;
 					break;
+
 				case PHVOLT_T_LESS:
 					$exprCode = $leftCode . " < " . $rightCode;
 					break;
+
 				case 61:
 					$exprCode = $leftCode . " > " . $rightCode;
 					break;
+
 				case 62:
 					$exprCode = $leftCode . " > " . $rightCode;
 					break;
+
 				case 126:
 					$exprCode = $leftCode . " . " . $rightCode;
 					break;
+
 				case 278:
 					$exprCode = "pow(" . $leftCode . ", " . $rightCode . ")";
 					break;
+
 				case PHVOLT_T_ARRAY:
 					if (isset($expr["left"]))
 					{
@@ -776,63 +787,83 @@ class Compiler implements InjectionAwareInterface
 
 					}
 					break;
+
 				case 258:
 					$exprCode = $expr["value"];
 					break;
+
 				case 259:
 					$exprCode = $expr["value"];
 					break;
+
 				case PHVOLT_T_STRING:
 					$exprCode = "'" . str_replace("'", "\\'", $expr["value"]) . "'";
 					break;
+
 				case PHVOLT_T_NULL:
 					$exprCode = "null";
 					break;
+
 				case PHVOLT_T_FALSE:
 					$exprCode = "false";
 					break;
+
 				case PHVOLT_T_TRUE:
 					$exprCode = "true";
 					break;
+
 				case PHVOLT_T_IDENTIFIER:
 					$exprCode = "$" . $expr["value"];
 					break;
+
 				case PHVOLT_T_AND:
 					$exprCode = $leftCode . " && " . $rightCode;
 					break;
+
 				case 267:
 					$exprCode = $leftCode . " || " . $rightCode;
 					break;
+
 				case PHVOLT_T_LESSEQUAL:
 					$exprCode = $leftCode . " <= " . $rightCode;
 					break;
+
 				case 271:
 					$exprCode = $leftCode . " >= " . $rightCode;
 					break;
+
 				case 272:
 					$exprCode = $leftCode . " == " . $rightCode;
 					break;
+
 				case 273:
 					$exprCode = $leftCode . " != " . $rightCode;
 					break;
+
 				case 274:
 					$exprCode = $leftCode . " === " . $rightCode;
 					break;
+
 				case 275:
 					$exprCode = $leftCode . " !== " . $rightCode;
 					break;
+
 				case PHVOLT_T_RANGE:
 					$exprCode = "range(" . $leftCode . ", " . $rightCode . ")";
 					break;
+
 				case PHVOLT_T_FCALL:
 					$exprCode = $this->functionCall($expr);
 					break;
+
 				case PHVOLT_T_ENCLOSED:
 					$exprCode = "(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_ARRAYACCESS:
 					$exprCode = $leftCode . "[" . $rightCode . "]";
 					break;
+
 				case PHVOLT_T_SLICE:
 					if (function() { if(isset($expr["start"])) {$start = $expr["start"]; return $start; } else { return false; } }())
 					{
@@ -846,68 +877,90 @@ class Compiler implements InjectionAwareInterface
 					}
 					$exprCode = "$this->slice(" . $leftCode . ", " . $startCode . ", " . $endCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_ISSET:
 					$exprCode = "!isset(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_ISSET:
 					$exprCode = "isset(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_ISEMPTY:
 					$exprCode = "!empty(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_ISEMPTY:
 					$exprCode = "empty(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_ISEVEN:
 					$exprCode = "!(((" . $leftCode . ") % 2) == 0)";
 					break;
+
 				case PHVOLT_T_ISEVEN:
 					$exprCode = "(((" . $leftCode . ") % 2) == 0)";
 					break;
+
 				case PHVOLT_T_NOT_ISODD:
 					$exprCode = "!(((" . $leftCode . ") % 2) != 0)";
 					break;
+
 				case PHVOLT_T_ISODD:
 					$exprCode = "(((" . $leftCode . ") % 2) != 0)";
 					break;
+
 				case PHVOLT_T_NOT_ISNUMERIC:
 					$exprCode = "!is_numeric(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_ISNUMERIC:
 					$exprCode = "is_numeric(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_ISSCALAR:
 					$exprCode = "!is_scalar(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_ISSCALAR:
 					$exprCode = "is_scalar(" . $leftCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_ISITERABLE:
 					$exprCode = "!(is_array(" . $leftCode . ") || (" . $leftCode . ") instanceof Traversable)";
 					break;
+
 				case PHVOLT_T_ISITERABLE:
 					$exprCode = "(is_array(" . $leftCode . ") || (" . $leftCode . ") instanceof Traversable)";
 					break;
+
 				case PHVOLT_T_IN:
 					$exprCode = "$this->isIncluded(" . $leftCode . ", " . $rightCode . ")";
 					break;
+
 				case PHVOLT_T_NOT_IN:
 					$exprCode = "!$this->isIncluded(" . $leftCode . ", " . $rightCode . ")";
 					break;
+
 				case PHVOLT_T_TERNARY:
 					$exprCode = "(" . $this->expression($expr["ternary"]) . " ? " . $leftCode . " : " . $rightCode . ")";
 					break;
+
 				case PHVOLT_T_MINUS:
 					$exprCode = "-" . $rightCode;
 					break;
+
 				case PHVOLT_T_PLUS:
 					$exprCode = "+" . $rightCode;
 					break;
+
 				case PHVOLT_T_RESOLVED_EXPR:
 					$exprCode = $expr["value"];
 					break;
+
 				default:
 					throw new Exception("Unknown expression " . $type . " in " . $expr["file"] . " on line " . $expr["line"]);
+
 			}
 			break;
 		}
@@ -1240,18 +1293,23 @@ class Compiler implements InjectionAwareInterface
 				case PHVOLT_T_ADD_ASSIGN:
 					$compilation .= " " . $target . " += " . $exprCode . ";";
 					break;
+
 				case PHVOLT_T_SUB_ASSIGN:
 					$compilation .= " " . $target . " -= " . $exprCode . ";";
 					break;
+
 				case PHVOLT_T_MUL_ASSIGN:
 					$compilation .= " " . $target . " *= " . $exprCode . ";";
 					break;
+
 				case PHVOLT_T_DIV_ASSIGN:
 					$compilation .= " " . $target . " /= " . $exprCode . ";";
 					break;
+
 				default:
 					$compilation .= " " . $target . " = " . $exprCode . ";";
 					break;
+
 
 			}
 		}
@@ -1463,30 +1521,39 @@ class Compiler implements InjectionAwareInterface
 				case PHVOLT_T_RAW_FRAGMENT:
 					$compilation .= $statement["value"];
 					break;
+
 				case PHVOLT_T_IF:
 					$compilation .= $this->compileIf($statement, $extendsMode);
 					break;
+
 				case PHVOLT_T_ELSEIF:
 					$compilation .= $this->compileElseIf($statement);
 					break;
+
 				case PHVOLT_T_SWITCH:
 					$compilation .= $this->compileSwitch($statement, $extendsMode);
 					break;
+
 				case PHVOLT_T_CASE:
 					$compilation .= $this->compileCase($statement);
 					break;
+
 				case PHVOLT_T_DEFAULT:
 					$compilation .= $this->compileCase($statement, false);
 					break;
+
 				case PHVOLT_T_FOR:
 					$compilation .= $this->compileForeach($statement, $extendsMode);
 					break;
+
 				case PHVOLT_T_SET:
 					$compilation .= $this->compileSet($statement);
 					break;
+
 				case PHVOLT_T_ECHO:
 					$compilation .= $this->compileEcho($statement);
 					break;
+
 				case PHVOLT_T_BLOCK:
 					$blockName = $statement["name"];
 					$blockStatements = $statement["block_statements"]					$blocks = $this->_blocks;
@@ -1512,6 +1579,7 @@ class Compiler implements InjectionAwareInterface
 
 					}
 					break;
+
 				case PHVOLT_T_EXTENDS:
 					$path = $statement["path"];
 					$finalPath = $this->getFinalPath($path["value"]);
@@ -1527,40 +1595,53 @@ class Compiler implements InjectionAwareInterface
 					$this->_extendedBlocks = $tempCompilation;
 					$blockMode = $extended;
 					break;
+
 				case PHVOLT_T_INCLUDE:
 					$compilation .= $this->compileInclude($statement);
 					break;
+
 				case PHVOLT_T_CACHE:
 					$compilation .= $this->compileCache($statement, $extendsMode);
 					break;
+
 				case PHVOLT_T_DO:
 					$compilation .= $this->compileDo($statement);
 					break;
+
 				case PHVOLT_T_RETURN:
 					$compilation .= $this->compileReturn($statement);
 					break;
+
 				case PHVOLT_T_AUTOESCAPE:
 					$compilation .= $this->compileAutoEscape($statement, $extendsMode);
 					break;
+
 				case PHVOLT_T_CONTINUE:
 					$compilation .= "<?php continue; ?>";
 					break;
+
 				case PHVOLT_T_BREAK:
 					$compilation .= "<?php break; ?>";
 					break;
+
 				case 321:
 					$compilation .= $this->compileForElse();
 					break;
+
 				case PHVOLT_T_MACRO:
 					$compilation .= $this->compileMacro($statement, $extendsMode);
 					break;
+
 				case 325:
 					$compilation .= $this->compileCall($statement, $extendsMode);
 					break;
+
 				case 358:
 					break;
+
 				default:
 					throw new Exception("Unknown statement " . $type . " in " . $statement["file"] . " on line " . $statement["line"]);
+
 			}
 		}
 

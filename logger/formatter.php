@@ -9,16 +9,26 @@ class Formatter implements FormatterInterface
 	{
 		switch ($type) {
 			case Logger::DEBUG:
-				return "DEBUG";			case Logger::ERROR:
-				return "ERROR";			case Logger::WARNING:
-				return "WARNING";			case Logger::CRITICAL:
-				return "CRITICAL";			case Logger::CUSTOM:
-				return "CUSTOM";			case Logger::ALERT:
-				return "ALERT";			case Logger::NOTICE:
-				return "NOTICE";			case Logger::INFO:
-				return "INFO";			case Logger::EMERGENCY:
-				return "EMERGENCY";			case Logger::SPECIAL:
+				return "DEBUG";
+			case Logger::ERROR:
+				return "ERROR";
+			case Logger::WARNING:
+				return "WARNING";
+			case Logger::CRITICAL:
+				return "CRITICAL";
+			case Logger::CUSTOM:
+				return "CUSTOM";
+			case Logger::ALERT:
+				return "ALERT";
+			case Logger::NOTICE:
+				return "NOTICE";
+			case Logger::INFO:
+				return "INFO";
+			case Logger::EMERGENCY:
+				return "EMERGENCY";
+			case Logger::SPECIAL:
 				return "SPECIAL";
+
 		}
 
 		return "CUSTOM";

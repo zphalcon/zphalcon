@@ -72,24 +72,30 @@ class Gd extends Adapter
 				case 1:
 					$this->_image = imagecreatefromgif($this->_file);
 					break;
+
 				case 2:
 					$this->_image = imagecreatefromjpeg($this->_file);
 					break;
+
 				case 3:
 					$this->_image = imagecreatefrompng($this->_file);
 					break;
+
 				case 15:
 					$this->_image = imagecreatefromwbmp($this->_file);
 					break;
+
 				case 16:
 					$this->_image = imagecreatefromxbm($this->_file);
 					break;
+
 				default:
 					if ($this->_mime)
 					{
 						throw new Exception("Installed GD does not support " . $this->_mime . " images");
 					}
 					break;
+
 
 			}
 

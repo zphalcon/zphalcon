@@ -489,11 +489,14 @@ class Router implements InjectionAwareInterface, RouterInterface, EventsAwareInt
 			case self::POSITION_LAST:
 				$this->_routes[] = $route;
 				break;
+
 			case self::POSITION_FIRST:
 				$this->_routes = array_merge([$route], $this->_routes);
 				break;
+
 			default:
 				throw new Exception("Invalid route position");
+
 		}
 
 		return $this;

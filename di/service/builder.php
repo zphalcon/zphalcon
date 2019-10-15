@@ -24,12 +24,14 @@ class Builder
 				{
 					throw new Exception("The dependency injector container is not valid");
 				}
-				return $dependencyInjector->get($name);			case "parameter":
+				return $dependencyInjector->get($name);
+			case "parameter":
 				if (!(function() { if(isset($argument["value"])) {$value = $argument["value"]; return $value; } else { return false; } }()))
 				{
 					throw new Exception("Service 'value' is required in parameter on position " . $position);
 				}
-				return $value;			case "instance":
+				return $value;
+			case "instance":
 				if (!(function() { if(isset($argument["className"])) {$name = $argument["className"]; return $name; } else { return false; } }()))
 				{
 					throw new Exception("Service 'className' is required in parameter on position " . $position);
@@ -42,8 +44,10 @@ class Builder
 				{
 					return $dependencyInjector->get($name, $instanceArguments);
 				}
-				return $dependencyInjector->get($name);			default:
+				return $dependencyInjector->get($name);
+			default:
 				throw new Exception("Unknown service type in parameter on position " . $position);
+
 		}
 
 	}

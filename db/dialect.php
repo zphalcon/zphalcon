@@ -163,10 +163,14 @@ class Dialect implements DialectInterface
 
 		switch ($type) {
 			case "scalar":
-				return $this->getSqlExpressionScalar($expression, $escapeChar, $bindCounts);			case "object":
-				return $this->getSqlExpressionObject($expression, $escapeChar, $bindCounts);			case "qualified":
-				return $this->getSqlExpressionQualified($expression, $escapeChar);			case "literal":
-				return $expression["value"];			case "placeholder":
+				return $this->getSqlExpressionScalar($expression, $escapeChar, $bindCounts);
+			case "object":
+				return $this->getSqlExpressionObject($expression, $escapeChar, $bindCounts);
+			case "qualified":
+				return $this->getSqlExpressionQualified($expression, $escapeChar);
+			case "literal":
+				return $expression["value"];
+			case "placeholder":
 				if (function() { if(isset($expression["times"])) {$times = $expression["times"]; return $times; } else { return false; } }())
 				{
 					$placeholders = [];
@@ -185,17 +189,28 @@ class Dialect implements DialectInterface
 
 					return join(", ", $placeholders);
 				}
-				return $expression["value"];			case "binary-op":
-				return $this->getSqlExpressionBinaryOperations($expression, $escapeChar, $bindCounts);			case "unary-op":
-				return $this->getSqlExpressionUnaryOperations($expression, $escapeChar, $bindCounts);			case "parentheses":
-				return "(" . $this->getSqlExpression($expression["left"], $escapeChar, $bindCounts) . ")";			case "functionCall":
-				return $this->getSqlExpressionFunctionCall($expression, $escapeChar, $bindCounts);			case "list":
-				return $this->getSqlExpressionList($expression, $escapeChar, $bindCounts);			case "all":
-				return $this->getSqlExpressionAll($expression, $escapeChar);			case "select":
-				return "(" . $this->select($expression["value"]) . ")";			case "cast":
-				return $this->getSqlExpressionCastValue($expression, $escapeChar, $bindCounts);			case "convert":
-				return $this->getSqlExpressionConvertValue($expression, $escapeChar, $bindCounts);			case "case":
+				return $expression["value"];
+			case "binary-op":
+				return $this->getSqlExpressionBinaryOperations($expression, $escapeChar, $bindCounts);
+			case "unary-op":
+				return $this->getSqlExpressionUnaryOperations($expression, $escapeChar, $bindCounts);
+			case "parentheses":
+				return "(" . $this->getSqlExpression($expression["left"], $escapeChar, $bindCounts) . ")";
+			case "functionCall":
+				return $this->getSqlExpressionFunctionCall($expression, $escapeChar, $bindCounts);
+			case "list":
+				return $this->getSqlExpressionList($expression, $escapeChar, $bindCounts);
+			case "all":
+				return $this->getSqlExpressionAll($expression, $escapeChar);
+			case "select":
+				return "(" . $this->select($expression["value"]) . ")";
+			case "cast":
+				return $this->getSqlExpressionCastValue($expression, $escapeChar, $bindCounts);
+			case "convert":
+				return $this->getSqlExpressionConvertValue($expression, $escapeChar, $bindCounts);
+			case "case":
 				return $this->getSqlExpressionCase($expression, $escapeChar, $bindCounts);
+
 		}
 
 		throw new Exception("Invalid SQL expression type '" . $type . "'");

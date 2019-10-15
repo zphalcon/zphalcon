@@ -357,17 +357,23 @@ class Model implements EntityInterface, ModelInterface, ResultInterface, Injecti
 						case Column::TYPE_INTEGER:
 							$castValue = intval($value, 10);
 							break;
+
 						case Column::TYPE_DOUBLE:
+
 						case Column::TYPE_DECIMAL:
+
 						case Column::TYPE_FLOAT:
 							$castValue = doubleval($value);
 							break;
+
 						case Column::TYPE_BOOLEAN:
 							$castValue = (bool) $value;
 							break;
+
 						default:
 							$castValue = $value;
 							break;
+
 
 					}
 

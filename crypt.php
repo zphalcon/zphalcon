@@ -105,9 +105,11 @@ class Crypt implements CryptInterface
 				case self::PADDING_ANSI_X_923:
 					$padding = str_repeat(chr(0), $paddingSize - 1) . chr($paddingSize);
 					break;
+
 				case self::PADDING_PKCS7:
 					$padding = str_repeat(chr($paddingSize), $paddingSize);
 					break;
+
 				case self::PADDING_ISO_10126:
 					$padding = "";
 					foreach (range(0, $paddingSize - 2) as $i) {
@@ -115,18 +117,23 @@ class Crypt implements CryptInterface
 					}
 					$padding .= chr($paddingSize);
 					break;
+
 				case self::PADDING_ISO_IEC_7816_4:
 					$padding = chr(0x80) . str_repeat(chr(0), $paddingSize - 1);
 					break;
+
 				case self::PADDING_ZERO:
 					$padding = str_repeat(chr(0), $paddingSize);
 					break;
+
 				case self::PADDING_SPACE:
 					$padding = str_repeat(" ", $paddingSize);
 					break;
+
 				default:
 					$paddingSize = 0;
 					break;
+
 
 			}
 
@@ -172,6 +179,7 @@ class Crypt implements CryptInterface
 
 					}
 					break;
+
 				case self::PADDING_PKCS7:
 					$last = substr($text, $length - 1, 1);
 					$ord = (int) ord($last);
@@ -189,10 +197,12 @@ class Crypt implements CryptInterface
 
 					}
 					break;
+
 				case self::PADDING_ISO_10126:
 					$last = substr($text, $length - 1, 1);
 					$paddingSize = (int) ord($last);
 					break;
+
 				case self::PADDING_ISO_IEC_7816_4:
 					$i = $length - 1;
 					while ($i > 0 && $text[$i] == 0x00 && $paddingSize < $blockSize) {
@@ -205,6 +215,7 @@ class Crypt implements CryptInterface
 
 					}
 					break;
+
 				case self::PADDING_ZERO:
 					$i = $length - 1;
 					while ($i >= 0 && $text[$i] == 0x00 && $paddingSize <= $blockSize) {
@@ -212,6 +223,7 @@ class Crypt implements CryptInterface
 						$i--;
 					}
 					break;
+
 				case self::PADDING_SPACE:
 					$i = $length - 1;
 					while ($i >= 0 && $text[$i] == 0x20 && $paddingSize <= $blockSize) {
@@ -219,8 +231,10 @@ class Crypt implements CryptInterface
 						$i--;
 					}
 					break;
+
 				default:
 					break;
+
 
 			}
 

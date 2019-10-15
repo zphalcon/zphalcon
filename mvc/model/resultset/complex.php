@@ -54,13 +54,17 @@ class Complex extends Resultset implements ResultsetInterface
 			case Resultset::HYDRATE_RECORDS:
 				$activeRow = new Row();
 				break;
+
 			case Resultset::HYDRATE_ARRAYS:
 				$activeRow = [];
 				break;
+
 			case Resultset::HYDRATE_OBJECTS:
+
 			default:
 				$activeRow = new \stdClass();
 				break;
+
 
 		}
 
@@ -104,9 +108,11 @@ class Complex extends Resultset implements ResultsetInterface
 
 						}
 						break;
+
 					default:
 						$value = Model::cloneResultMapHydrate($rowModel, $columnMap, $hydrateMode);
 						break;
+
 
 				}
 
@@ -119,9 +125,11 @@ class Complex extends Resultset implements ResultsetInterface
 					case Resultset::HYDRATE_ARRAYS:
 						$activeRow[$attribute] = $value;
 						break;
+
 					default:
 						$activeRow->{$attribute} = $value;
 						break;
+
 
 				}
 

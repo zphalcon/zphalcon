@@ -194,13 +194,16 @@ class Route
 						$taskName = $parts[1];
 						$actionName = $parts[2];
 						break;
+
 					case 2:
 						$taskName = $parts[0];
 						$actionName = $parts[1];
 						break;
+
 					case 1:
 						$taskName = $parts[0];
 						break;
+
 
 				}
 

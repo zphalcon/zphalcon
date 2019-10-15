@@ -22,12 +22,15 @@ class Version
 			case 1:
 				$suffix = "ALPHA";
 				break;
+
 			case 2:
 				$suffix = "BETA";
 				break;
+
 			case 3:
 				$suffix = "RC";
 				break;
+
 
 		}
 
@@ -79,17 +82,23 @@ class Version
 
 		switch ($part) {
 			case self::VERSION_MAJOR:
+
 			case self::VERSION_MEDIUM:
+
 			case self::VERSION_MINOR:
+
 			case self::VERSION_SPECIAL_NUMBER:
 				$result = $version[$part];
 				break;
+
 			case self::VERSION_SPECIAL:
 				$result = static::_getSpecial($version[self::VERSION_SPECIAL]);
 				break;
+
 			default:
 				$result = static::get();
 				break;
+
 
 		}
 

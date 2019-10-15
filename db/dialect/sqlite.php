@@ -36,6 +36,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_DATE:
 				if (empty($columnSql))
 				{
@@ -43,6 +44,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_VARCHAR:
 				if (empty($columnSql))
 				{
@@ -51,6 +53,7 @@ class Sqlite extends Dialect
 				}
 				$columnSql .= "(" . $column->getSize() . ")";
 				break;
+
 			case Column::TYPE_DECIMAL:
 				if (empty($columnSql))
 				{
@@ -59,6 +62,7 @@ class Sqlite extends Dialect
 				}
 				$columnSql .= "(" . $column->getSize() . "," . $column->getScale() . ")";
 				break;
+
 			case Column::TYPE_DATETIME:
 				if (empty($columnSql))
 				{
@@ -66,6 +70,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_TIMESTAMP:
 				if (empty($columnSql))
 				{
@@ -73,6 +78,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_CHAR:
 				if (empty($columnSql))
 				{
@@ -81,6 +87,7 @@ class Sqlite extends Dialect
 				}
 				$columnSql .= "(" . $column->getSize() . ")";
 				break;
+
 			case Column::TYPE_TEXT:
 				if (empty($columnSql))
 				{
@@ -88,6 +95,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_BOOLEAN:
 				if (empty($columnSql))
 				{
@@ -95,6 +103,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_FLOAT:
 				if (empty($columnSql))
 				{
@@ -102,6 +111,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_DOUBLE:
 				if (empty($columnSql))
 				{
@@ -114,6 +124,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_BIGINTEGER:
 				if (empty($columnSql))
 				{
@@ -126,6 +137,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_TINYBLOB:
 				if (empty($columnSql))
 				{
@@ -133,6 +145,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_BLOB:
 				if (empty($columnSql))
 				{
@@ -140,6 +153,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_MEDIUMBLOB:
 				if (empty($columnSql))
 				{
@@ -147,6 +161,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			case Column::TYPE_LONGBLOB:
 				if (empty($columnSql))
 				{
@@ -154,6 +169,7 @@ class Sqlite extends Dialect
 
 				}
 				break;
+
 			default:
 				if (empty($columnSql))
 				{
@@ -176,6 +192,7 @@ class Sqlite extends Dialect
 					}
 
 				}
+
 
 		}
 

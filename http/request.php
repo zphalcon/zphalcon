@@ -460,16 +460,26 @@ class Request implements RequestInterface, InjectionAwareInterface
 	{
 		switch (strtoupper($method)) {
 			case "GET":
+
 			case "POST":
+
 			case "PUT":
+
 			case "DELETE":
+
 			case "HEAD":
+
 			case "OPTIONS":
+
 			case "PATCH":
+
 			case "PURGE":
+
 			case "TRACE":
+
 			case "CONNECT":
 				return true;
+
 		}
 
 		return false;

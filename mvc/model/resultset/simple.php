@@ -60,9 +60,11 @@ class Simple extends Resultset
 
 				}
 				break;
+
 			default:
 				$activeRow = Model::cloneResultMapHydrate($row, $columnMap, $hydrateMode);
 				break;
+
 
 		}
 
